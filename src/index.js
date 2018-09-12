@@ -4,7 +4,7 @@ const { graphqlHapi, graphiqlHapi } = require('apollo-server-hapi');
 const schema = require('./graphql/schema')
 
 
-const MONGO_HOST = 'localhost'
+const MONGO_HOST = '192.168.0.42'
 const MONGO_PORT = '27017'
 const MONGO_DB = 'ECSO-DB'
 const MONGO_USER = 'ecso_user'
@@ -15,7 +15,7 @@ const API_PORT = 4000
 
 const server = hapi.server({
     port: API_PORT,
-	host: 'localhost',
+	host: '0.0.0.0',
 	// load: {
 	// 	sampleInterval: 1000,
 	// 	maxEventLoopDelay: 10000
