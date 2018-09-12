@@ -13,13 +13,6 @@ const MONGO_PASS = 'Qwerty12'
 const API_PORT = 4000
 
 
-
-
-
-// mongoose.connection.once('open', () => {
-// 	console.log('connected with user ' + MONGO_USER)
-// })
-
 const server = hapi.server({
     port: API_PORT,
 	host: 'localhost',
