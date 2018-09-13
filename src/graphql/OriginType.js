@@ -4,7 +4,7 @@ const { GraphQLObjectType, GraphQLString } = graphql
 const OriginType = new GraphQLObjectType({
     name: 'Origin',
     fields: () => ({
-        _id: { type: GraphQLString },
+        _id: { type: GraphQLInt },
         name: { type: GraphQLString },
         iata: { type: GraphQLString },
         country: { type: GraphQLString }

@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const TravelScema = new Schema({
-    origin: String,
-    destination: String,
+    origin: Number,
+    destination: Number,
     date: Number,
     priceAirplane: Number,
     weatherTempStat: Number,

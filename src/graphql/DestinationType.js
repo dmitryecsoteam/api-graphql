@@ -4,7 +4,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql
 const DestinationType = new GraphQLObjectType({
     name: 'Destiantion',
     fields: () => ({
-        _id: { type: GraphQLString },
+        _id: { type: GraphQLInt },
         name: { type: GraphQLString },
         iata: { type: GraphQLString },
         country: { type: GraphQLString },

@@ -55,7 +55,7 @@ const RootQuery = new GraphQLObjectType({
         },
         destination: {
             type: DestinationType,
-            args: { _id: { type: GraphQLString }},
+            args: { _id: { type: GraphQLInt }},
             resolve: async (parent, args) => {
                 return await Destination.findById(args._id)
             }
