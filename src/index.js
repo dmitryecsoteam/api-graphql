@@ -12,6 +12,11 @@ const MONGO_PASS = 'Qwerty12'
 
 const API_PORT = 4000
 
+console.log(process.env)
+
+const test_var = process.env.MONGO_HOST
+console.log('test_var' + test_var)
+
 
 const server = hapi.server({
     port: API_PORT,
