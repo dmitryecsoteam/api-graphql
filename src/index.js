@@ -11,10 +11,21 @@ const MONGO_USER = process.env.MONGO_USER
 const MONGO_PASS = process.env.MONGO_PASS
 
 const API_PORT = process.env.API_PORT
+const API_SERVER_HOST = process.env.API_SERVER_HOST
+
+// const MONGO_HOST = 'localhost'
+// const MONGO_PORT = 27017
+// const MONGO_DB = 'ECSO-DB'
+// const MONGO_USER = 'ecso_user'
+// const MONGO_PASS = 'Qwerty12'
+
+// const API_PORT = 4001
+// const API_SERVER_HOST = '0.0.0.0'
+
 
 const server = hapi.server({
     port: API_PORT,
-	host: '0.0.0.0',
+	host: API_SERVER_HOST,
 	// load: {
 	// 	sampleInterval: 1000,
 	// 	maxEventLoopDelay: 10000

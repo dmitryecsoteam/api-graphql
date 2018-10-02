@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const TravelScema = new Schema({
     origin: Number,
     destination: Number,
-    date: Number,
+    date: String,
     priceAirplane: Number,
     weatherTempStat: Number,
     weatherConditionStat: String

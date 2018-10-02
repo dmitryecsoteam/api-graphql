@@ -63,9 +63,9 @@ const RootQuery = new GraphQLObjectType({
         travel: {
             type: TravelType,
             args: { 
-                origin: { type: GraphQLString },
-                destination: { type: GraphQLString },
-                date: { type: GraphQLInt }
+                origin: { type: GraphQLInt },
+                destination: { type: GraphQLInt },
+                date: { type: GraphQLString }
             },
             resolve: async (parent, args) => {
                 return await Travel.findOne(args)

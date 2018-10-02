@@ -12,7 +12,7 @@ const TravelType = new GraphQLObjectType({
                 return await Destination.findById(root.destination)
             }
          },
-        date: { type: GraphQLInt },
+        date: { type: GraphQLString },
         priceAirplane: { type: GraphQLInt },
         weatherTempStat: { type: GraphQLFloat },
         weatherConditionStat: { type: GraphQLString }
