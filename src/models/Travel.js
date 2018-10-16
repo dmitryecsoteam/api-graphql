@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const TravelScema = new Schema({
     origin: Number,
@@ -8,6 +8,6 @@ const TravelScema = new Schema({
     priceAirplane: Number,
     weatherTempStat: Number,
     weatherConditionStat: String
-})
+});
 
-module.exports = mongoose.model('Travel', TravelScema, 'travels')
+module.exports = mongoose.model('Travel', TravelScema, 'travels');

@@ -1,5 +1,5 @@
-const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql
+const graphql = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql;
 
 const DestinationType = new GraphQLObjectType({
     name: 'Destiantion',
@@ -27,6 +27,6 @@ const DestinationType = new GraphQLObjectType({
         natureRating: { type: GraphQLInt },
         natureDescription: { type: GraphQLString }
     })
-})
+});
 
-module.exports = DestinationType
+module.exports = DestinationType;

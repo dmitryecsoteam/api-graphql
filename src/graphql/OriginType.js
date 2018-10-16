@@ -1,5 +1,5 @@
-const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql
+const graphql = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql;
 
 const OriginType = new GraphQLObjectType({
     name: 'Origin',
@@ -9,6 +9,6 @@ const OriginType = new GraphQLObjectType({
         iata: { type: GraphQLString },
         country: { type: GraphQLString }
     })
-})
+});
 
-module.exports = OriginType
+module.exports = OriginType;

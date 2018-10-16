@@ -14,7 +14,7 @@ RUN npm install --only=production
 COPY src /app
 
 # Define environment variables
-ENV MONGO_HOST=192.168.0.42 MONGO_PORT=27017 MONGO_DB=ECSO-DB MONGO_USER=ecso_user MONGO_PASS=Qwerty12 API_PORT=4000 API_SERVER_HOST=0.0.0.0
+ENV NODE_ENV=production MONGO_HOST=192.168.0.42 MONGO_PORT=27017 MONGO_DB=ECSO-DB MONGO_USER=ecso_user MONGO_PASS=Qwerty12 API_PORT=4000 API_SERVER_HOST=0.0.0.0 API_SERVER_CORS=true
 
 # Run node
 CMD [ "node", "index.js" ]

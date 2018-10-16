@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const DestinationSchema = new Schema({
     _id: Number,
@@ -24,6 +24,6 @@ const DestinationSchema = new Schema({
     historicalDescription: String,
     natureRating: Number,
     natureDescription: String
-})
+});
 
-module.exports = mongoose.model('Destination', DestinationSchema, 'destinations')
+module.exports = mongoose.model('Destination', DestinationSchema, 'destinations');

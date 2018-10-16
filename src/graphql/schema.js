@@ -1,17 +1,17 @@
-const graphql = require('graphql')
-const OriginType = require('./OriginType')
-const DestinationType = require('./DestinationType')
-const TravelType = require('./TravelType')
+const graphql = require('graphql');
+const OriginType = require('./OriginType');
+const DestinationType = require('./DestinationType');
+const TravelType = require('./TravelType');
 const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
     GraphQLList,
     GraphQLSchema
-} = graphql
-const Origin = require('./../models/Origin')
-const Destination = require('./../models/Destination')
-const Travel = require('./../models/Travel')
+} = graphql;
+const Origin = require('./../models/Origin');
+const Destination = require('./../models/Destination');
+const Travel = require('./../models/Travel');
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -72,9 +72,9 @@ const RootQuery = new GraphQLObjectType({
             }
         }
     }
-})
+});
 
 
 module.exports = new GraphQLSchema({
     query: RootQuery
-})
+});

@@ -1,7 +1,7 @@
-const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLFloat } = graphql
-const DestinationType = require('./DestinationType')
-const Destination = require('./../models/Destination')
+const graphql = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLFloat } = graphql;
+const DestinationType = require('./DestinationType');
+const Destination = require('./../models/Destination');
 
 const TravelType = new GraphQLObjectType({
     name: 'Travel',
@@ -17,6 +17,6 @@ const TravelType = new GraphQLObjectType({
         weatherTempStat: { type: GraphQLFloat },
         weatherConditionStat: { type: GraphQLString }
     })
-})
+});
 
-module.exports = TravelType
+module.exports = TravelType;
