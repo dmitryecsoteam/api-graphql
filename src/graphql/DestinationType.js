@@ -1,13 +1,14 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = graphql;
 
 const DestinationType = new GraphQLObjectType({
     name: 'Destiantion',
     fields: () => ({
         _id: { type: GraphQLInt },
-        name: { type: GraphQLString },
+        name: { type: new GraphQLList(GraphQLString) },
         iata: { type: GraphQLString },
-        country: { type: GraphQLString },
+        name_en: { type: GraphQLString },
+        country_en: { type: GraphQLString },
         museumRating: { type: GraphQLInt },
         museumDescription: { type: GraphQLString },
         zooAquaRating: { type: GraphQLInt },

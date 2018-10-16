@@ -21,14 +21,14 @@ const RootQuery = new GraphQLObjectType({
 //            type: OriginType,
             args: { name: { type: GraphQLString }},
             resolve: async (parent, args) => {
-                return await Origin.find({ name: {'$regex': '^'+args.name} })
+                return await Origin.find({ name: {'$regex': '^'+args.name, $options: '-i'} })
             }
         },
         destinationStartsWith: {
             type: new GraphQLList(DestinationType),
             args: { name: { type: GraphQLString }},
             resolve: async (parent, args) => {
-                return await Destination.find({ name: {'$regex': '^'+args.name} })
+                return await Destination.find({ name: {'$regex': '^'+args.name, $options: '-i'} })
             }
         },
         destinationRating: {

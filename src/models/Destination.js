@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 const DestinationSchema = new Schema({
     _id: Number,
-    name: String,
+    name: [String],
     iata: String,
-    country: String,
+    name_en: String,
+    country_en: String,
     museumRating: Number,
     museumDescription: String,
     zooAquaRating: Number,
