@@ -6,6 +6,7 @@ const Destination = require('./../models/Destination');
 const TravelType = new GraphQLObjectType({
     name: 'Travel',
     fields: () => ({
+        _id: { type: GraphQLString },
         destination: { //type: GraphQLString
             type: DestinationType,
             resolve: async (root) => {
@@ -13,9 +14,9 @@ const TravelType = new GraphQLObjectType({
             }
          },
         date: { type: GraphQLString },
-        priceAirplane: { type: GraphQLInt },
-        weatherTempStat: { type: GraphQLFloat },
-        weatherConditionStat: { type: GraphQLString }
+        priceAirplane: { type: GraphQLInt }
+        //weatherTempStat: { type: GraphQLFloat },
+        //weatherConditionStat: { type: GraphQLString }
     })
 });
 

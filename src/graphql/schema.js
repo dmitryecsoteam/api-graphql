@@ -45,12 +45,13 @@ const RootQuery = new GraphQLObjectType({
                 natureRating: { type: GraphQLInt }
             },
             resolve: async (parent, args) => {
-                for (var property in args) {
-                    if (args.hasOwnProperty(property)) {
-                        args[property] = { $gte: args[property] }
+                let newArgs = args;
+                for (var property in newArgs) {
+                    if (newArgs.hasOwnProperty(property)) {
+                        newArgs[property] = { $gte: newArgs[property] }
                     }
                 }
-                return await Destination.find(args)
+                return await Destination.find(newArgs)
             }
         },
         destination: {

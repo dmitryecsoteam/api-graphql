@@ -1,10 +1,14 @@
 {
   "name": "api-graphql",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "main": "index.js",
   "license": "MIT",
+  "jest": {
+    "setupTestFrameworkScriptFile": "./src/tests/setupTests.js"
+  },
   "scripts": {
-    "start": "nodemon --exec \"node -r dotenv/config\" src/index.js"
+    "start": "nodemon --exec \"node -r dotenv/config\" src/index.js",
+    "test": "jest --forceExit"
   },
   "dependencies": {
     "apollo-server-hapi": "1.3.6",
@@ -15,6 +19,7 @@
   "devDependencies": {
     "dotenv": "6.1.0",
     "eslint": "5.7.0",
+    "jest": "^23.6.0",
     "nodemon": "1.18.4"
   }
 }
