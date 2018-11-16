@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TravelScema = new Schema({
-    _id: String,
+    //_id: String,
     origin: Number,
     destination: Number,
     date: String,

@@ -113,6 +113,21 @@ test('should respond to travel query', async () => {
     expect(response.result).toMatchSnapshot();
 });
 
+test('should respond to travelFull query', async () => {
+    const injectOptions = {
+        method: 'POST',
+        url,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        payload: JSON.stringify({ query: '{travelFull(_id: "5bbce95f81e97acfcd8e0a76") { _id destination { _id name_en country_en } date priceAirplane } }' })
+    };
+
+    const response = await graphqlServer.server.inject(injectOptions);
+
+    expect(response.result).toMatchSnapshot();
+});
+
 
 afterAll(async () => {
     await mongo.close();
