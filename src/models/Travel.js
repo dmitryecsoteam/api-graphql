@@ -6,9 +6,11 @@ const TravelScema = new Schema({
     origin: Number,
     destination: Number,
     date: String,
-    priceAirplane: Number
-    //weatherTempStat: Number,
-    //weatherConditionStat: String
+    priceAirplane: Number,
+    weatherTempStatMax: Number,
+    weatherTempStatMin: Number,
+    carDuration: Number,
+    carDistance: Number
 });
 
 module.exports = mongoose.model('Travel', TravelScema, 'travels');

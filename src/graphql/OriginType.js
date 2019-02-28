@@ -6,9 +6,9 @@ const OriginType = new GraphQLObjectType({
     fields: () => ({
         _id: { type: GraphQLInt },
         name: { type: new GraphQLList(GraphQLString) },
-        name_en: { type: GraphQLString },
+        nameEn: { type: GraphQLString },
         iata: { type: GraphQLString },
-        country_en: { type: GraphQLString }
+        countryEn: { type: GraphQLString }
     })
 });
 

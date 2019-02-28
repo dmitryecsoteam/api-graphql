@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 const DestinationSchema = new Schema({
     _id: Number,
     name: [String],
+    cityDescription: String,
+    population: String,
     iata: String,
-    name_en: String,
-    country_en: String,
+    nameEn: String,
+    countryEn: String,
     museumRating: Number,
     museumDescription: String,
     zooAquaRating: Number,
@@ -24,7 +26,9 @@ const DestinationSchema = new Schema({
     historicalRating: Number,
     historicalDescription: String,
     natureRating: Number,
-    natureDescription: String
+    natureDescription: String,
+    nightlifeRating: Number,
+    nightlifeDescription: String
 });
 
 module.exports = mongoose.model('Destination', DestinationSchema, 'destinations');

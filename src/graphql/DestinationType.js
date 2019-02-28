@@ -6,9 +6,11 @@ const DestinationType = new GraphQLObjectType({
     fields: () => ({
         _id: { type: GraphQLInt },
         name: { type: new GraphQLList(GraphQLString) },
+        cityDescription: { type: GraphQLString },
+        population: { type: GraphQLString },
         iata: { type: GraphQLString },
-        name_en: { type: GraphQLString },
-        country_en: { type: GraphQLString },
+        nameEn: { type: GraphQLString },
+        countryEn: { type: GraphQLString },
         museumRating: { type: GraphQLInt },
         museumDescription: { type: GraphQLString },
         zooAquaRating: { type: GraphQLInt },
@@ -26,7 +28,9 @@ const DestinationType = new GraphQLObjectType({
         historicalRating: { type: GraphQLInt },
         historicalDescription: { type: GraphQLString },
         natureRating: { type: GraphQLInt },
-        natureDescription: { type: GraphQLString }
+        natureDescription: { type: GraphQLString },
+        nightlifeRating: { type: GraphQLInt },
+        nightlifeDescription: { type: GraphQLString }
     })
 });
 

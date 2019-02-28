@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const OriginsSchema = new Schema({
     _id: Number,
     name: [String],
-    name_en: String,
+    nameEn: String,
     iata: String,
-    country_en: String
+    countryEn: String
 });
 
 module.exports = mongoose.model('Origin', OriginsSchema, 'origins');
