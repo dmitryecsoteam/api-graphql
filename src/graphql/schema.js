@@ -47,7 +47,8 @@ const RootQuery = new GraphQLObjectType({
                 foodRating: { type: GraphQLInt },
                 shoppingRating: { type: GraphQLInt },
                 historicalRating: { type: GraphQLInt },
-                natureRating: { type: GraphQLInt }
+                natureRating: { type: GraphQLInt },
+                nightlifeRating: { type: GraphQLInt }
             },
             resolve: async (parent, args) => {
                 let newArgs = args;
