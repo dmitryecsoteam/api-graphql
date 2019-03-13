@@ -20,6 +20,7 @@ const TravelType = new GraphQLObjectType({
          },
         date: { type: GraphQLString },
         priceAirplane: { type: GraphQLInt },
+        priceHotel: { type: GraphQLInt },
         weatherTempStatMax: { type: GraphQLInt },
         weatherTempStatMin: { type: GraphQLInt },
         carDuration: { type: GraphQLInt },

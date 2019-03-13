@@ -7,6 +7,7 @@ const TravelScema = new Schema({
     destination: Number,
     date: String,
     priceAirplane: Number,
+    priceHotel: Number,
     weatherTempStatMax: Number,
     weatherTempStatMin: Number,
     carDuration: Number,
