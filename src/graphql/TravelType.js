@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLFloat, GraphQLID } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql;
 const DestinationType = require('./DestinationType');
 const Destination = require('./../models/Destination');
 

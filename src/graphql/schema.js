@@ -1,5 +1,4 @@
 const graphql = require('graphql');
-const mongoose = require('mongoose');
 const OriginType = require('./OriginType');
 const DestinationType = require('./DestinationType');
 const TravelType = require('./TravelType');
@@ -13,10 +12,6 @@ const {
 const Origin = require('./../models/Origin');
 const Destination = require('./../models/Destination');
 const Travel = require('./../models/Travel');
-
-const ObjectId = (_id) => {
-    return `ObjectId("${_id}")`;
-}
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
