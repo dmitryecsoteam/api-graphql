@@ -35,13 +35,9 @@ const RootQuery = new GraphQLObjectType({
             type: new GraphQLList(DestinationType),
             args: {
                 museumRating: { type: GraphQLInt },
-                zooAquaRating: { type: GraphQLInt },
-                wellnessSpaRating: { type: GraphQLInt },
-                mountainsRating: { type: GraphQLInt },
                 beachRating: { type: GraphQLInt },
                 foodRating: { type: GraphQLInt },
                 shoppingRating: { type: GraphQLInt },
-                historicalRating: { type: GraphQLInt },
                 natureRating: { type: GraphQLInt },
                 nightlifeRating: { type: GraphQLInt }
             },
