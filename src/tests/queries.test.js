@@ -94,7 +94,7 @@ test('should respond to travelFull query', async () => {
         headers: {
             'Content-Type': 'application/json'
         },
-        payload: JSON.stringify({ query: '{travelFull(_id: "5bbce95f81e97acfcd8e0a76") { _id destination { _id nameEn countryEn } date priceAirplane priceHotel } }' })
+        payload: JSON.stringify({ query: '{travelFull(_id: "5bbce95f81e97acfcd8e0a76") { _id destination { _id nameEn countryEn } origin { nameEn } date priceAirplane priceHotel } }' })
     };
 
     const response = await graphqlServer.server.inject(injectOptions);

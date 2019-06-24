@@ -10,4 +10,4 @@ exports[`should respond to originStartsWith query with lowercase letter 1`] = `"
 
 exports[`should respond to travel query 1`] = `"{\\"data\\":{\\"travel\\":{\\"_id\\":\\"5bbce95f81e97acfcd8e0a76\\",\\"destination\\":{\\"_id\\":1,\\"nameEn\\":\\"Osaka\\",\\"countryEn\\":\\"Japan\\"},\\"date\\":\\"2018-10-24\\",\\"priceAirplane\\":53,\\"priceHotel\\":75}}}"`;
 
-exports[`should respond to travelFull query 1`] = `"{\\"data\\":{\\"travelFull\\":{\\"_id\\":\\"5bbce95f81e97acfcd8e0a76\\",\\"destination\\":{\\"_id\\":1,\\"nameEn\\":\\"Osaka\\",\\"countryEn\\":\\"Japan\\"},\\"date\\":\\"2018-10-24\\",\\"priceAirplane\\":53,\\"priceHotel\\":25}}}"`;
+exports[`should respond to travelFull query 1`] = `"{\\"data\\":{\\"travelFull\\":{\\"_id\\":\\"5bbce95f81e97acfcd8e0a76\\",\\"destination\\":{\\"_id\\":1,\\"nameEn\\":\\"Osaka\\",\\"countryEn\\":\\"Japan\\"},\\"origin\\":{\\"nameEn\\":\\"Osaka\\"},\\"date\\":\\"2018-10-24\\",\\"priceAirplane\\":53,\\"priceHotel\\":25}}}"`;

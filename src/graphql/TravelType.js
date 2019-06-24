@@ -1,7 +1,9 @@
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLInt } = graphql;
 const DestinationType = require('./DestinationType');
+const OriginType = require('./OriginType');
 const Destination = require('./../models/Destination');
+const Origin = require('./../models/Origin');
 
 const TravelType = new GraphQLObjectType({
     name: 'Travel',
@@ -17,7 +19,13 @@ const TravelType = new GraphQLObjectType({
             resolve: async (root) => {
                 return await Destination.findById(root.destination);
             }
-         },
+        },
+        origin: {
+            type: OriginType,
+            resolve: async (root) => {
+                return await Origin.findById(root.origin);
+            }
+        },
         date: { type: GraphQLString },
         priceAirplane: { type: GraphQLInt },
         priceHotel: { type: GraphQLInt },
