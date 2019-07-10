@@ -12,6 +12,11 @@ beforeAll(async () => {
     //await mongo.connect();
 });
 
+afterAll(async () => {
+    await graphqlServer.server.stop();
+    console.log("Server stopped");
+});
+
 test('should respond to originStartsWith query with lowercase letter', async () => {
     const injectOptions = {
         method: 'POST',
@@ -100,10 +105,4 @@ test('should respond to travelFull query', async () => {
     const response = await graphqlServer.server.inject(injectOptions);
 
     expect(response.result).toMatchSnapshot();
-});
-
-
-afterAll(async () => {
-    await graphqlServer.server.stop();
-    console.log("Server stopped");
 });

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const TravelScema = new Schema({
+const TravelSchema = new Schema({
     //_id: String,
     origin: Number,
     destination: Number,
@@ -14,4 +14,4 @@ const TravelScema = new Schema({
     carDistance: Number
 });
 
-module.exports = mongoose.model('Travel', TravelScema, 'travels');
+module.exports = mongoose.model('Travel', TravelSchema, 'travels');

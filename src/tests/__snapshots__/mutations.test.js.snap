@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`addNotification mutation should add new notification by date/origin/dest to existing user 1`] = `"{\\"data\\":{\\"addNotification\\":{\\"email\\":\\"test@mail.com\\",\\"notifications\\":[{\\"travelId\\":\\"5c6c7e42e3b7e1edb974a40c\\",\\"date\\":\\"2019-08-09\\",\\"priceAirplaneLast\\":null,\\"priceHotelLast\\":75},{\\"travelId\\":\\"5bbce95f81e97acfcd8e0a76\\",\\"date\\":\\"2019-07-07\\",\\"priceAirplaneLast\\":53,\\"priceHotelLast\\":null}]}}}"`;
+
+exports[`addNotification mutation should add new notification by id to existing user 1`] = `"{\\"data\\":{\\"addNotification\\":{\\"email\\":\\"test@mail.com\\",\\"notifications\\":[{\\"travelId\\":\\"5c6c7e42e3b7e1edb974a40c\\",\\"date\\":\\"2019-08-09\\",\\"priceAirplaneLast\\":null,\\"priceHotelLast\\":75},{\\"travelId\\":\\"5d239408f05e9620082a2419\\",\\"date\\":\\"2019-07-07\\",\\"priceAirplaneLast\\":null,\\"priceHotelLast\\":25}]}}}"`;
+
+exports[`addNotification mutation should not add notification by date/origin/dest if it already exists 1`] = `"{\\"data\\":{\\"addNotification\\":null},\\"errors\\":[{\\"message\\":\\"Such notification already exists. TravelId: 5c6c7e42e3b7e1edb974a40c, date: 2019-08-09\\",\\"locations\\":[{\\"line\\":1,\\"column\\":11}],\\"path\\":[\\"addNotification\\"]}]}"`;
+
+exports[`addNotification mutation should not add notification by id if it already exists 1`] = `"{\\"data\\":{\\"addNotification\\":null},\\"errors\\":[{\\"message\\":\\"Such notification already exists. TravelId: 5c6c7e42e3b7e1edb974a40c, date: 2019-08-09\\",\\"locations\\":[{\\"line\\":1,\\"column\\":11}],\\"path\\":[\\"addNotification\\"]}]}"`;
+
+exports[`addNotification mutation should not add notification if user doesn't exist 1`] = `"{\\"data\\":{\\"addNotification\\":null},\\"errors\\":[{\\"message\\":\\"User with email random_user@mail.com doesn't exist in database\\",\\"locations\\":[{\\"line\\":1,\\"column\\":11}],\\"path\\":[\\"addNotification\\"]}]}"`;
+
+exports[`deleteNotification mutation should delete notification 1`] = `"{\\"data\\":{\\"deleteNotification\\":{\\"email\\":\\"test@mail.com\\",\\"notifications\\":[]}}}"`;
+
+exports[`deleteNotification mutation should return error if notification doesn't exist 1`] = `"{\\"data\\":{\\"deleteNotification\\":null},\\"errors\\":[{\\"message\\":\\"User test@mail.com doesn't have notification with id 5c6c7e42e3b7e1edb974a40d\\",\\"locations\\":[{\\"line\\":1,\\"column\\":11}],\\"path\\":[\\"deleteNotification\\"]}]}"`;
+
+exports[`deleteNotification mutation should return error if user doesn't exist 1`] = `"{\\"data\\":{\\"deleteNotification\\":null},\\"errors\\":[{\\"message\\":\\"User with email random_user@mail.com doesn't exist in database\\",\\"locations\\":[{\\"line\\":1,\\"column\\":11}],\\"path\\":[\\"deleteNotification\\"]}]}"`;
+
+exports[`signupUser mutation should not sign up existing user and return error 1`] = `"{\\"data\\":{\\"signupUser\\":null},\\"errors\\":[{\\"message\\":\\"User with email test@mail.com already exists in database\\",\\"locations\\":[{\\"line\\":1,\\"column\\":11}],\\"path\\":[\\"signupUser\\"]}]}"`;
+
+exports[`signupUser mutation should sign up new user and return token 1`] = `"{\\"data\\":{\\"signupUser\\":{\\"token\\":\\"test_token\\"}}}"`;
