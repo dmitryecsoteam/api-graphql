@@ -1,6 +1,6 @@
 const JWT = {
     createToken: (email) => {
-        if (email === 'test1@mail.com') return 'test_token';
+        if (email === 'test1@mail.com' || email === 'test@mail.com') return 'test_token';
     }
 }
 

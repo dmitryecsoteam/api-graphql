@@ -19,6 +19,32 @@ ObjectId.prototype.valueOf = function () {
 const RootMutationType = new GraphQLObjectType({
     name: 'RootMutationType',
     fields: {
+        signinUser: {
+            type: TokenType,
+            args: {
+                email: { type: GraphQLString },
+                password: { type: GraphQLString }
+            },
+            resolve: async (parent, { email, password }) => {
+                
+                try {
+                    const user = await User.findOne({ email });
+                    
+                    if (!user) {
+                        throw new Error(`User with email ${email} doesn't exist`);
+                    }
+
+                    if (user.password !== password) {
+                        throw new Error('Wrong password');
+                    } else {
+                        return { token: JWT.createToken(email) };
+                    }
+                } catch (e) {
+                    console.log(e);
+                    return e;
+                }
+            }
+        },
         signupUser: {
             type: TokenType,
             args: {

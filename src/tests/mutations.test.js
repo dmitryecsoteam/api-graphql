@@ -19,6 +19,53 @@ afterAll(async () => {
     console.log("Server stopped");
 });
 
+describe('signinUser mutation', () => {
+    test('should signin user and return token', async () => {
+
+        const injectOptions = {
+            method: 'POST',
+            url,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            payload: JSON.stringify({ query: 'mutation {signinUser(email: "test@mail.com", password: "XXX") { token }}' })
+        };
+
+        const response = await graphqlServer.server.inject(injectOptions);
+        expect(response.result).toMatchSnapshot();
+    });
+
+    test('should return error if user doesn\'t exist', async () => {
+
+        const injectOptions = {
+            method: 'POST',
+            url,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            payload: JSON.stringify({ query: 'mutation {signinUser(email: "randomUser@mail.com", password: "XXX") { token }}' })
+        };
+
+        const response = await graphqlServer.server.inject(injectOptions);
+        expect(response.result).toMatchSnapshot();
+    });
+
+    test('should return error if password doesn\'t match', async () => {
+
+        const injectOptions = {
+            method: 'POST',
+            url,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            payload: JSON.stringify({ query: 'mutation {signinUser(email: "test@mail.com", password: "YYY") { token }}' })
+        };
+
+        const response = await graphqlServer.server.inject(injectOptions);
+        expect(response.result).toMatchSnapshot();
+    });
+});
+
 describe('signupUser mutation', () => {
     test('should sign up new user and return token', async () => {
 
