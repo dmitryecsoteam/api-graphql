@@ -31,7 +31,7 @@ const RootMutationType = new GraphQLObjectType({
                 try {
                     const user = await User.findOne({ email });
                     if (user) {
-                        throw new Error(`User with email ${email} already exists in database`);
+                        throw new Error(`User with email ${email} already exists`);
                     }
 
                     await new User({ email, password, name }).save();
@@ -85,7 +85,7 @@ const RootMutationType = new GraphQLObjectType({
                             return user;
                         }
                     } else {
-                        throw new Error(`User with email ${email} doesn't exist in database`);
+                        throw new Error(`User with email ${email} doesn't exist`);
                     }
                 } catch (e) {
                     console.log(e)
@@ -114,7 +114,7 @@ const RootMutationType = new GraphQLObjectType({
                         await user.save();
                         return user;
                     } else {
-                        throw new Error(`User with email ${email} doesn't exist in database`);
+                        throw new Error(`User with email ${email} doesn't exist`);
                     }
                 } catch (e) {
                     console.log(e);
