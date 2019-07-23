@@ -1,4 +1,3 @@
-//const server = require('./server/server');
 const server = require('./server/serverExpress');
 const mongo = require('./server/mongo');
 

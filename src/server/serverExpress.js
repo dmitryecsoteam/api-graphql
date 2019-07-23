@@ -1,8 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const graphqlHTTP = require('express-graphql');
-//const { ApolloServer } = require('apollo-server-express');
-//const { graphqlExpress } = require('apollo-server-express/dist/expressApollo');
 
 const schema = require('../graphql/schema');
 
@@ -10,6 +8,7 @@ const API_PORT = process.env.API_PORT;
 const API_SERVER_HOST = process.env.API_SERVER_HOST;
 const API_SERVER_CORS = process.env.API_SERVER_CORS;
 const API_CONTEXT_ROOT = process.env.API_CONTEXT_ROOT;
+const API_GRAPHIQL = process.env.API_GRAPHIQL;
 
 
 const app = express();
@@ -24,19 +23,11 @@ app.use(
     '/' + API_CONTEXT_ROOT,
     graphqlHTTP(request => ({
       schema,
-      graphiql: true,
+      graphiql: API_GRAPHIQL,
+      // Send token to resolvers in context
       context: { token: request.headers.authorization }
     })),
   );
-
-
-
-/**************** Apollo Server ***************/
-// const apolloServer = new ApolloServer({
-//     schema
-// });
-// apolloServer.applyMiddleware({ app, path: '/' + API_CONTEXT_ROOT });
-
 
 
 const init = async () => {
