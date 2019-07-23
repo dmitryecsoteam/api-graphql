@@ -1,4 +1,5 @@
-const server = require('./server/server');
+//const server = require('./server/server');
+const server = require('./server/serverExpress');
 const mongo = require('./server/mongo');
 
 server.init().catch(error => console.error(error.stack));

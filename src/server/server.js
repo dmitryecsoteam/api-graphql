@@ -13,7 +13,7 @@ const API_CONTEXT_ROOT = process.env.API_CONTEXT_ROOT;
 
 
 const server = hapi.server({
-    port: API_PORT,
+	port: API_PORT,
 	host: API_SERVER_HOST,
 	routes: {
 		cors: (API_SERVER_CORS === 'true')
@@ -26,7 +26,8 @@ const server = hapi.server({
 
 const init = async () => {
 
-    await server.register({
+
+	await server.register({
 		plugin: graphiqlHapi,
 		options: {
 			path: '/graphiql',
@@ -49,8 +50,10 @@ const init = async () => {
 		}
 	});
 
-    await server.start()
+	await server.start()
 	console.log(`Server running at ${server.info.uri}`);
 };
+
+
 
 module.exports = { server, init };
