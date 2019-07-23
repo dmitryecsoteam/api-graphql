@@ -161,3 +161,14 @@ Object {
   },
 }
 `;
+
+exports[`should return current user info 1`] = `
+Object {
+  "data": Object {
+    "currentUser": Object {
+      "email": "test@mail.com",
+      "name": "Alex",
+    },
+  },
+}
+`;

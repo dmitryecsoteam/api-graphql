@@ -9,7 +9,7 @@ const headers = { 'Content-Type': 'application/json' };
 jest.mock('../models/Destination.js');
 jest.mock('../models/Origin.js');
 jest.mock('../models/Travel.js');
-
+jest.mock('../auth/JWT.js');
 
 
 let server;
@@ -76,4 +76,22 @@ test('should respond to travelFull query', async () => {
     const response = await axios({ method, url, headers, data });
 
     expect(response.data).toMatchSnapshot();
+});
+
+test('should return current user info', async () => {
+    
+    const data = JSON.stringify({ query: '{currentUser { email name } }' });
+
+    const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
+
+    expect(response.data).toMatchSnapshot();
+});
+
+test('should return null for currentUser without auth header', async () => {
+
+    const data = JSON.stringify({ query: '{currentUser { email name } }' });
+
+    const response = await axios({ method, url, headers, data });
+
+    expect(response.data.data.currentUser).toBeNull;
 });

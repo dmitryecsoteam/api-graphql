@@ -5,6 +5,7 @@ const {
     GraphQLInt,
     GraphQLList
 } = graphql;
+const JWT = require('../auth/JWT');
 
 const Origin = require('./../models/Origin');
 const Destination = require('./../models/Destination');
@@ -13,6 +14,7 @@ const Travel = require('./../models/Travel');
 const OriginType = require('./OriginType');
 const DestinationType = require('./DestinationType');
 const TravelType = require('./TravelType');
+const UserType = require('./UserType');
 
 
 
@@ -80,6 +82,17 @@ const RootQueryType = new GraphQLObjectType({
             },
             resolve: async (parent, { _id }) => {
                 return await Travel.findById(_id);
+            }
+        },
+        currentUser: {
+            type: UserType,
+            resolve: async (parent, args, { token }) => {
+
+                if (!token) return null;
+
+                const { email, name } = JWT.verifyToken(token);
+
+                return { email, name };
             }
         }
     }

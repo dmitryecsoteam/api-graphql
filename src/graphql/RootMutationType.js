@@ -37,7 +37,7 @@ const RootMutationType = new GraphQLObjectType({
                     if (user.password !== password) {
                         throw new Error('Wrong password');
                     } else {
-                        return { token: JWT.createToken(email) };
+                        return { token: JWT.createToken(email, user.name) };
                     }
                 } catch (e) {
                     console.log(e);
@@ -62,7 +62,7 @@ const RootMutationType = new GraphQLObjectType({
 
                     await new User({ email, password, name }).save();
 
-                    return { token: JWT.createToken(email) };
+                    return { token: JWT.createToken(email, name) };
                 } catch (e) {
                     console.log(e);
                     return e;
