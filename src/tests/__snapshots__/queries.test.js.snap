@@ -128,7 +128,7 @@ Object {
   "data": Object {
     "travel": Object {
       "_id": "5bbce95f81e97acfcd8e0a76",
-      "date": "2018-10-24",
+      "date": "2019-07-07",
       "destination": Object {
         "_id": 1,
         "countryEn": "Japan",

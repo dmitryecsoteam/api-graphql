@@ -76,9 +76,9 @@ describe('signupUser mutation', () => {
 describe('addNotification mutation', () => {
     test('should add new notification by id to existing user', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {addNotification(email: "test@mail.com", id: "5d239408f05e9620082a2419", date: "2019-07-07", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast } }}' });
+        const data = JSON.stringify({ query: 'mutation {addNotification(id: "5d239408f05e9620082a2419", date: "2019-07-07", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast } }}' });
 
-        const response = await axios({ method, url, headers, data });
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
 
         expect(response.data).toMatchSnapshot();
         expect(save).toHaveBeenCalledTimes(1);
@@ -86,9 +86,9 @@ describe('addNotification mutation', () => {
 
     test('should add new notification by date/origin/dest to existing user', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {addNotification(email: "test@mail.com", date: "2019-07-07", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+        const data = JSON.stringify({ query: 'mutation {addNotification(date: "2019-07-07", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
 
-        const response = await axios({ method, url, headers, data });
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
 
         expect(response.data).toMatchSnapshot();
         expect(save).toHaveBeenCalledTimes(1);
@@ -96,9 +96,9 @@ describe('addNotification mutation', () => {
 
     test('should not add notification by id if it already exists', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {addNotification(email: "test@mail.com", id: "5c6c7e42e3b7e1edb974a40c", date: "2019-08-09", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast } }}' });
+        const data = JSON.stringify({ query: 'mutation {addNotification(id: "5c6c7e42e3b7e1edb974a40c", date: "2019-08-09", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast } }}' });
 
-        const response = await axios({ method, url, headers, data });
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
 
         expect(response.data).toMatchSnapshot();
         expect(save).toHaveBeenCalledTimes(0);
@@ -106,9 +106,9 @@ describe('addNotification mutation', () => {
 
     test('should not add notification by date/origin/dest if it already exists', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {addNotification(email: "test@mail.com", date: "2019-08-09", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+        const data = JSON.stringify({ query: 'mutation {addNotification(date: "2019-08-09", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
 
-        const response = await axios({ method, url, headers, data });
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
 
         expect(response.data).toMatchSnapshot();
         expect(save).toHaveBeenCalledTimes(0);
@@ -116,31 +116,72 @@ describe('addNotification mutation', () => {
 
     test('should not add notification if user doesn\'t exist', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {addNotification(email: "random_user@mail.com", date: "2019-08-09", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' })
+        const data = JSON.stringify({ query: 'mutation {addNotification(date: "2019-08-09", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' })
+
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer non_exist_user_token' }, data });
+
+        expect(response.data).toMatchSnapshot();
+        expect(save).toHaveBeenCalledTimes(0);
+    });
+
+    test('should not add notification by id if id doesn\'t exist', async () => {
+
+        const data = JSON.stringify({ query: 'mutation {addNotification(id: "5c6c7e42e3b7e1edb974a40d", date: "2019-08-09", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast } }}' });
+
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
+
+        expect(response.data).toMatchSnapshot();
+        expect(save).toHaveBeenCalledTimes(0);
+    });
+
+    test('should not add notification by date/origin/dest if date is past or out of range', async () => {
+
+        const data = JSON.stringify({ query: 'mutation {addNotification(date: "2000-01-10", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
+
+        expect(response.data).toMatchSnapshot();
+        expect(save).toHaveBeenCalledTimes(0);
+    });
+
+    test('should not add notification by date/origin/dest if origin or destination doesn\'t exist', async () => {
+
+        const data = JSON.stringify({ query: 'mutation {addNotification(date: "2019-07-08", origin: 100, destination: 200) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
+
+        expect(response.data).toMatchSnapshot();
+        expect(save).toHaveBeenCalledTimes(0);
+    });
+
+    test('should not add notification without authorization token', async () => {
+
+        const data = JSON.stringify({ query: 'mutation {addNotification(id: "5d239408f05e9620082a2419", date: "2019-07-07", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast } }}' });
 
         const response = await axios({ method, url, headers, data });
 
         expect(response.data).toMatchSnapshot();
         expect(save).toHaveBeenCalledTimes(0);
     });
+
 });
 
 describe('deleteNotification mutation', () => {
     test('should delete notification', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {deleteNotification(email: "test@mail.com", id: "5c6c7e42e3b7e1edb974a40c") { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+        const data = JSON.stringify({ query: 'mutation {deleteNotification(id: "5c6c7e42e3b7e1edb974a40c") { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
 
-        const response = await axios({ method, url, headers, data });
-
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
+        
         expect(response.data).toMatchSnapshot();
         expect(save).toHaveBeenCalledTimes(1);
     });
 
     test('should return error if user doesn\'t exist', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {deleteNotification(email: "random_user@mail.com", id: "5c6c7e42e3b7e1edb974a40c") { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+        const data = JSON.stringify({ query: 'mutation {deleteNotification(id: "5c6c7e42e3b7e1edb974a40c") { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
 
-        const response = await axios({ method, url, headers, data });
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer non_exist_user_token' }, data });
 
         expect(response.data).toMatchSnapshot();
         expect(save).toHaveBeenCalledTimes(0);
@@ -148,7 +189,17 @@ describe('deleteNotification mutation', () => {
 
     test('should return error if notification doesn\'t exist', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {deleteNotification(email: "test@mail.com", id: "5c6c7e42e3b7e1edb974a40d") { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+        const data = JSON.stringify({ query: 'mutation {deleteNotification(id: "5c6c7e42e3b7e1edb974a40d") { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+
+        const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
+
+        expect(response.data).toMatchSnapshot();
+        expect(save).toHaveBeenCalledTimes(0);
+    });
+
+    test('should not delete notification without authorization token', async () => {
+
+        const data = JSON.stringify({ query: 'mutation {deleteNotification(id: "5c6c7e42e3b7e1edb974a40c") { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
 
         const response = await axios({ method, url, headers, data });
 

@@ -26,10 +26,10 @@ const RootMutationType = new GraphQLObjectType({
                 password: { type: GraphQLString }
             },
             resolve: async (parent, { email, password }) => {
-                
+
                 try {
                     const user = await User.findOne({ email });
-                    
+
                     if (!user) {
                         throw new Error(`User with email ${email} doesn't exist`);
                     }
@@ -72,49 +72,62 @@ const RootMutationType = new GraphQLObjectType({
         addNotification: {
             type: UserType,
             args: {
-                email: { type: GraphQLString },
+                //email: { type: GraphQLString },
                 id: { type: GraphQLString },
                 date: { type: GraphQLString },
                 origin: { type: GraphQLInt },
                 destination: { type: GraphQLInt }
             },
-            resolve: async (parent, { email, date, origin, destination, id }) => {
+            resolve: async (parent, { date, origin, destination, id }, { token }) => {
 
                 try {
-                    const user = await User.findOne({ email });
 
-                    // Check if user exists in DB
-                    if (user) {
+                    if (token) {
 
-                        let travelId;
-                        let travel;
+                        const { email } = JWT.verifyToken(token);
 
-                        // If travelId is empty find it by origin, destination and date
-                        if (!id) {
-                            travel = await Travel.findOne({ origin, destination, date });
-                            if (travel) {
-                                travelId = travel._id
+                        const user = await User.findOne({ email });
+
+                        // Check if user exists in DB
+                        if (user) {
+
+                            let travelId;
+                            let travel;
+
+                            // If travelId is empty find it by origin, destination and date
+                            if (!id) {
+                                travel = await Travel.findOne({ origin, destination, date });
+                                if (travel) {
+                                    travelId = travel._id
+                                } else {
+                                    throw new Error(`Travel not found. Origin: ${origin}, destination: ${destination}, date: ${date}`);
+                                }
                             } else {
-                                throw new Error(`Travel not found. Origin: ${origin}, destination: ${destination}, date: ${date}`);
+                                travelId = mongoose.Types.ObjectId(id);
+                                travel = await Travel.findById(travelId);
+                                console.log("travel", travel)
+                                if (!travel) {
+                                    throw new Error(`Travel not found. Id: ${travelId}`);
+                                }
+                            }
+
+                            
+                            if (user.notifications.some(notif => notif.travelId.equals(travelId))) {
+                                throw new Error(`Such notification already exists. TravelId: ${travelId}, date: ${date}`);
+                            } else {
+                                user.notifications.push({ travelId, date, priceAirplaneLast: travel.priceAirplane, priceHotelLast: travel.priceHotel });
+                                await user.save();
+                                return user;
                             }
                         } else {
-                            travelId = mongoose.Types.ObjectId(id);
-                            travel = await Travel.findById(travelId);
+                            throw new Error(`User with email ${email} doesn't exist`);
                         }
 
-
-                        if (user.notifications.some(notif => notif.travelId.equals(travelId))) {
-                            throw new Error(`Such notification already exists. TravelId: ${travelId}, date: ${date}`);
-                        } else {
-                            user.notifications.push({ travelId, date, priceAirplaneLast: travel.priceAirplane, priceHotelLast: travel.priceHotel });
-                            await user.save();
-                            return user;
-                        }
                     } else {
-                        throw new Error(`User with email ${email} doesn't exist`);
+                        throw new Error('Unauthorized');
                     }
                 } catch (e) {
-                    console.log(e)
+                    console.log(e);
                     return e;
                 }
             }
@@ -122,26 +135,33 @@ const RootMutationType = new GraphQLObjectType({
         deleteNotification: {
             type: UserType,
             args: {
-                email: { type: GraphQLString },
+                //email: { type: GraphQLString },
                 id: { type: GraphQLString }
             },
-            resolve: async (parent, { email, id }) => {
+            resolve: async (parent, { id }, { token }) => {
 
                 try {
 
-                    const user = await User.findOne({ email });
+                    if (token) {
 
-                    if (user) {
-                        const length = user.notifications.length;
-                        user.notifications = user.notifications.filter(notif => !notif.travelId.equals(id));
+                        const { email } = JWT.verifyToken(token);
 
-                        if (length === user.notifications.length) throw new Error(`User ${email} doesn't have notification with id ${id}`);
+                        const user = await User.findOne({ email });
 
-                        await user.save();
-                        return user;
+                        if (user) {
+                            const length = user.notifications.length;
+                            user.notifications = user.notifications.filter(notif => !notif.travelId.equals(id));
+    
+                            if (length === user.notifications.length) throw new Error(`User ${email} doesn't have notification with id ${id}`);
+    
+                            await user.save();
+                            return user;
+                        } else {
+                            throw new Error(`User with email ${email} doesn't exist`);
+                        }
                     } else {
-                        throw new Error(`User with email ${email} doesn't exist`);
-                    }
+                        throw new Error('Unauthorized');
+                    }       
                 } catch (e) {
                     console.log(e);
                     return e;

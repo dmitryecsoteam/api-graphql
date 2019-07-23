@@ -62,7 +62,7 @@ test('should respond to destination query', async () => {
 
 test('should respond to travel query', async () => {
 
-    const data = JSON.stringify({ query: '{travel(origin: 1, destination: 1, date: "2018-10-24") { _id destination { _id nameEn countryEn } date priceAirplane priceHotel } }' });
+    const data = JSON.stringify({ query: '{travel(origin: 1, destination: 2, date: "2019-07-07") { _id destination { _id nameEn countryEn } date priceAirplane priceHotel } }' });
 
     const response = await axios({ method, url, headers, data });
 

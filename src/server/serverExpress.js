@@ -25,7 +25,7 @@ app.use(
       schema,
       graphiql: API_GRAPHIQL,
       // Send token to resolvers in context
-      context: { token: request.headers.authorization }
+      context: { token: request.headers.authorization ? request.headers.authorization.replace('Bearer ', '') : '' }
     })),
   );
 
