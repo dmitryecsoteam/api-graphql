@@ -105,7 +105,7 @@ const RootMutationType = new GraphQLObjectType({
                             } else {
                                 travelId = mongoose.Types.ObjectId(id);
                                 travel = await Travel.findById(travelId);
-                                console.log("travel", travel)
+
                                 if (!travel) {
                                     throw new Error(`Travel not found. Id: ${travelId}`);
                                 }
@@ -115,7 +115,7 @@ const RootMutationType = new GraphQLObjectType({
                             if (user.notifications.some(notif => notif.travelId.equals(travelId))) {
                                 throw new Error(`Such notification already exists. TravelId: ${travelId}, date: ${date}`);
                             } else {
-                                user.notifications.push({ travelId, date, priceAirplaneLast: travel.priceAirplane, priceHotelLast: travel.priceHotel });
+                                user.notifications.push({ travelId, date: travel.date, priceAirplaneLast: travel.priceAirplane, priceHotelLast: travel.priceHotel });
                                 await user.save();
                                 return user;
                             }
