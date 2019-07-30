@@ -9,6 +9,11 @@ function User({ _id, email, password, name, notifications }) {
     this.notifications = notifications;
 
     this.save = save;
+    this.select = (fields) => {
+        if (fields.notifications === 1 && fields._id === 0) {
+            return { notifications }
+        }
+    }
 }
 
 // Static property
