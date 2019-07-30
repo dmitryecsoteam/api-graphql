@@ -9,6 +9,7 @@ const headers = { 'Content-Type': 'application/json' };
 jest.mock('../models/Destination.js');
 jest.mock('../models/Origin.js');
 jest.mock('../models/Travel.js');
+jest.mock('../models/User.js');
 jest.mock('../auth/JWT.js');
 
 
@@ -94,4 +95,22 @@ test('should return null for currentUser without auth header', async () => {
     const response = await axios({ method, url, headers, data });
 
     expect(response.data.data.currentUser).toBeNull;
+});
+
+test('should return getNotifications for authorized user', async () => {
+
+    const data = JSON.stringify({ query: '{getNotifications { travelId date priceAirplaneLast priceHotelLast } }' });
+
+    const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
+
+    expect(response.data).toMatchSnapshot();
+});
+
+test('should return "Unauthorized" for query without token', async () => {
+
+    const data = JSON.stringify({ query: '{getNotifications { travelId date priceAirplaneLast priceHotelLast } }' });
+
+    const response = await axios({ method, url, headers, data });
+    
+    expect(response.data).toMatchSnapshot();
 });

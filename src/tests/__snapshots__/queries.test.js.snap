@@ -162,6 +162,28 @@ Object {
 }
 `;
 
+exports[`should return "Unauthorized" for query without token 1`] = `
+Object {
+  "data": Object {
+    "getNotifications": null,
+  },
+  "errors": Array [
+    Object {
+      "locations": Array [
+        Object {
+          "column": 2,
+          "line": 1,
+        },
+      ],
+      "message": "Unauthorized",
+      "path": Array [
+        "getNotifications",
+      ],
+    },
+  ],
+}
+`;
+
 exports[`should return current user info 1`] = `
 Object {
   "data": Object {
@@ -169,6 +191,21 @@ Object {
       "email": "test@mail.com",
       "name": "Alex",
     },
+  },
+}
+`;
+
+exports[`should return getNotifications for authorized user 1`] = `
+Object {
+  "data": Object {
+    "getNotifications": Array [
+      Object {
+        "date": "2019-08-09",
+        "priceAirplaneLast": null,
+        "priceHotelLast": 75,
+        "travelId": "5c6c7e42e3b7e1edb974a40c",
+      },
+    ],
   },
 }
 `;
