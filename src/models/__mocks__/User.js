@@ -27,6 +27,8 @@ User.findOne = ({ email }) => {
             notifications: [
                 {
                     travelId: mongoose.Types.ObjectId('5c6c7e42e3b7e1edb974a40c'),
+                    origin: 1,
+                    destination: 2,
                     date: '2019-08-09',
                     priceAirplaneLast: null,
                     priceHotelLast: 75

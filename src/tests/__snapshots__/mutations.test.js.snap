@@ -8,12 +8,24 @@ Object {
       "notifications": Array [
         Object {
           "date": "2019-08-09",
+          "destination": Object {
+            "nameEn": "Osaka",
+          },
+          "origin": Object {
+            "nameEn": "Tokyo",
+          },
           "priceAirplaneLast": null,
           "priceHotelLast": 75,
           "travelId": "5c6c7e42e3b7e1edb974a40c",
         },
         Object {
           "date": "2019-07-07",
+          "destination": Object {
+            "nameEn": "Osaka",
+          },
+          "origin": Object {
+            "nameEn": "Tokyo",
+          },
           "priceAirplaneLast": 53,
           "priceHotelLast": 75,
           "travelId": "5bbce95f81e97acfcd8e0a76",
@@ -32,12 +44,24 @@ Object {
       "notifications": Array [
         Object {
           "date": "2019-08-09",
+          "destination": Object {
+            "nameEn": "Osaka",
+          },
+          "origin": Object {
+            "nameEn": "Tokyo",
+          },
           "priceAirplaneLast": null,
           "priceHotelLast": 75,
           "travelId": "5c6c7e42e3b7e1edb974a40c",
         },
         Object {
           "date": "2019-07-07",
+          "destination": Object {
+            "nameEn": "Osaka",
+          },
+          "origin": Object {
+            "nameEn": "Tokyo",
+          },
           "priceAirplaneLast": null,
           "priceHotelLast": 25,
           "travelId": "5d239408f05e9620082a2419",

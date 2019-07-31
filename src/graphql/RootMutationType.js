@@ -111,11 +111,18 @@ const RootMutationType = new GraphQLObjectType({
                                 }
                             }
 
-                            
+
                             if (user.notifications.some(notif => notif.travelId.equals(travelId))) {
                                 throw new Error(`Such notification already exists. TravelId: ${travelId}, date: ${date}`);
                             } else {
-                                user.notifications.push({ travelId, date: travel.date, priceAirplaneLast: travel.priceAirplane, priceHotelLast: travel.priceHotel });
+                                user.notifications.push({
+                                    travelId,
+                                    origin: travel.origin,
+                                    destination: travel.destination,
+                                    date: travel.date,
+                                    priceAirplaneLast: travel.priceAirplane,
+                                    priceHotelLast: travel.priceHotel
+                                });
                                 await user.save();
                                 return user;
                             }
@@ -151,9 +158,9 @@ const RootMutationType = new GraphQLObjectType({
                         if (user) {
                             const length = user.notifications.length;
                             user.notifications = user.notifications.filter(notif => !notif.travelId.equals(id));
-    
+
                             if (length === user.notifications.length) throw new Error(`User ${email} doesn't have notification with id ${id}`);
-    
+
                             await user.save();
                             return user;
                         } else {
@@ -161,7 +168,7 @@ const RootMutationType = new GraphQLObjectType({
                         }
                     } else {
                         throw new Error('Unauthorized');
-                    }       
+                    }
                 } catch (e) {
                     console.log(e);
                     return e;

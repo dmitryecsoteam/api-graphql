@@ -99,7 +99,7 @@ test('should return null for currentUser without auth header', async () => {
 
 test('should return getNotifications for authorized user', async () => {
 
-    const data = JSON.stringify({ query: '{getNotifications { travelId date priceAirplaneLast priceHotelLast } }' });
+    const data = JSON.stringify({ query: '{getNotifications { travelId origin { nameEn } destination { nameEn } date priceAirplaneLast priceHotelLast } }' });
 
     const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
 
@@ -108,7 +108,7 @@ test('should return getNotifications for authorized user', async () => {
 
 test('should return "Unauthorized" for query without token', async () => {
 
-    const data = JSON.stringify({ query: '{getNotifications { travelId date priceAirplaneLast priceHotelLast } }' });
+    const data = JSON.stringify({ query: '{getNotifications { travelId origin { nameEn } destination { nameEn } date priceAirplaneLast priceHotelLast } }' });
 
     const response = await axios({ method, url, headers, data });
     

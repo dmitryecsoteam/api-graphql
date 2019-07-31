@@ -76,7 +76,7 @@ describe('signupUser mutation', () => {
 describe('addNotification mutation', () => {
     test('should add new notification by id to existing user', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {addNotification(id: "5d239408f05e9620082a2419") { email notifications { travelId date priceAirplaneLast priceHotelLast } }}' });
+        const data = JSON.stringify({ query: 'mutation {addNotification(id: "5d239408f05e9620082a2419") { email notifications { travelId origin { nameEn } destination { nameEn } date priceAirplaneLast priceHotelLast } }}' });
 
         const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
 
@@ -86,7 +86,7 @@ describe('addNotification mutation', () => {
 
     test('should add new notification by date/origin/dest to existing user', async () => {
 
-        const data = JSON.stringify({ query: 'mutation {addNotification(date: "2019-07-07", origin: 1, destination: 2) { email notifications { travelId date priceAirplaneLast priceHotelLast }}}' });
+        const data = JSON.stringify({ query: 'mutation {addNotification(date: "2019-07-07", origin: 1, destination: 2) { email notifications { travelId origin { nameEn } destination { nameEn } date priceAirplaneLast priceHotelLast }}}' });
 
         const response = await axios({ method, url, headers: { ...headers, Authorization: 'Bearer valid_token' }, data });
 
