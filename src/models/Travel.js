@@ -14,4 +14,25 @@ const TravelSchema = new Schema({
     carDistance: Number
 });
 
-module.exports = mongoose.model('Travel', TravelSchema, 'travels');
+TravelSchema.statics.findMinPrices = (date) => {
+    return TravelModel.aggregate([
+        {
+            $match:
+            {
+                "date": { $lt: date }
+            }
+        },
+        {
+            $group:
+            {
+                _id: "$origin",
+                minAirplane: { $min: "$priceAirplane" },
+                minHotel: { $min: "$priceHotel" }
+            }
+        }
+    ]);
+}
+
+const TravelModel = mongoose.model('Travel', TravelSchema, 'travels');
+
+module.exports = TravelModel;
