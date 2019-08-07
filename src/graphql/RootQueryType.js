@@ -139,7 +139,7 @@ const RootQueryType = new GraphQLObjectType({
                     // randomly select item to process
                     const item = minPrices[Math.floor(Math.random() * minPrices.length)];
 
-                    const results = await Travel.find({ origin: item._id, priceAirplane: item.minAirplane });
+                    const results = await Travel.find({ origin: item._id, priceAirplane: item.minAirplane, date: { $lt: date } });
 
                     if (results.length > 0) {
 
