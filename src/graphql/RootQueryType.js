@@ -118,7 +118,7 @@ const RootQueryType = new GraphQLObjectType({
                 }
             }
         },
-        getTopDeals: {
+        getBestDeals: {
             type: new GraphQLList(TravelType),
             args: {
                 limit: { type: GraphQLInt },
