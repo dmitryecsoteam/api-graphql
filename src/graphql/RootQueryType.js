@@ -139,7 +139,7 @@ const RootQueryType = new GraphQLObjectType({
                     // randomly select item to process
                     const item = minPrices[Math.floor(Math.random() * minPrices.length)];
 
-                    const results = await Travel.find({ origin: item._id, priceAirplane: item.minAirplane, date: { $lt: date } });
+                    const results = await Travel.find({ origin: item._id, priceAirplane: { $lte: item.minAirplane + 10 }, date: { $lt: date } });
 
                     if (results.length > 0) {
 
@@ -158,8 +158,10 @@ const RootQueryType = new GraphQLObjectType({
                                 }
                             }
 
-                            // check if result is not in travels array, add it and leave loop
-                            if (!travels.some(tr => tr._id.equals(results[next]._id))) {
+                            // check that such origin and destination is not already in travels array
+                            if (!travels.some(tr => (tr.origin === results[next].origin && tr.destination === results[next].destination))) {
+
+                                // add to travels array and leave the loop
                                 travels.push(results[next]);
                                 break;
                             }
