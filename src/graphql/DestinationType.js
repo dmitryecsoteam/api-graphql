@@ -7,6 +7,7 @@ const DestinationType = new GraphQLObjectType({
         _id: { type: GraphQLInt },
         name: { type: new GraphQLList(GraphQLString) },
         cityDescription: { type: GraphQLString },
+        foundingDate: { type: GraphQLString },
         population: { type: GraphQLString },
         iata: { type: GraphQLString },
         nameEn: { type: GraphQLString },

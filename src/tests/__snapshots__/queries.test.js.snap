@@ -150,6 +150,7 @@ Object {
       "destination": Object {
         "_id": 1,
         "countryEn": "Japan",
+        "foundingDate": "1899",
         "nameEn": "Osaka",
       },
       "origin": Object {

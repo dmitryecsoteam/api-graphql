@@ -72,7 +72,7 @@ test('should respond to travel query', async () => {
 
 test('should respond to travelFull query', async () => {
 
-    const data = JSON.stringify({ query: '{travelFull(_id: "5bbce95f81e97acfcd8e0a76") { _id destination { _id nameEn countryEn } origin { nameEn } date priceAirplane priceHotel } }' });
+    const data = JSON.stringify({ query: '{travelFull(_id: "5bbce95f81e97acfcd8e0a76") { _id destination { _id nameEn countryEn foundingDate } origin { nameEn } date priceAirplane priceHotel } }' });
 
     const response = await axios({ method, url, headers, data });
 

@@ -5,6 +5,7 @@ const DestinationSchema = new Schema({
     _id: Number,
     name: [String],
     cityDescription: String,
+    foundingDate: String,
     population: String,
     iata: String,
     nameEn: String,
